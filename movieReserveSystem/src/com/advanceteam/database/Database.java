@@ -169,7 +169,7 @@ public class Database {
 		noticeList.add(notice_1);
 
 		NoticeBoardVO notice_2 = new NoticeBoardVO();
-		notice_2.setBoard_no(notice_2.getBoard_sq());
+		notice_2.setBoard_no(2);
 		notice_2.setBoard_postDate(cal.getTime());
 		notice_2.setBoard_text("다만 악에서 구하소서 굿즈를 판매합니다. 많은 사랑 부탁드립니다.");
 		notice_2.setBoard_title("다만 악에서 구하소서 굿즈안내");
@@ -178,7 +178,7 @@ public class Database {
 		noticeList.add(notice_2);
 
 		NoticeBoardVO notice_3 = new NoticeBoardVO();
-		notice_1.setBoard_no(notice_3.getBoard_sq());
+		notice_1.setBoard_no(3);
 		notice_1.setBoard_postDate(cal.getTime());
 		notice_1.setBoard_text("Lol Champions League 상영관 이벤트를 진행중입니다.");
 		notice_1.setBoard_title("롤챔스 상영관 이벤트 안내");
@@ -187,7 +187,7 @@ public class Database {
 		noticeList.add(notice_3);
 
 		NoticeBoardVO notice_4 = new NoticeBoardVO();
-		notice_1.setBoard_no(notice_4.getBoard_sq());
+		notice_1.setBoard_no(4);
 		notice_1.setBoard_postDate(cal.getTime());
 		notice_1.setBoard_text("GGV는 매일 방역을 하고있습니다. 안심하고 이용해주세요.");
 		notice_1.setBoard_title("코로나 방역조치 관련 안내");
