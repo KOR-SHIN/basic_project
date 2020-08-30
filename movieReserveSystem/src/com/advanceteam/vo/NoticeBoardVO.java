@@ -10,12 +10,6 @@ public class NoticeBoardVO {
 	private String board_text;
 	private int board_views; // 조회수
 	private Date board_postDate;
-	private static int board_sq;
-	
-	{
-		board_no = board_sq;
-		board_sq++;
-	}
 	
 	public int getBoard_sq() {
 		return board_sq;
