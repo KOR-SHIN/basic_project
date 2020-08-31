@@ -9,11 +9,10 @@ import com.advanceteam.vo.*;
 public class Database {
 
 	/*
-	데이터베이스의 정보는 3년간 유효하다.
-	회원이 탈퇴하거나, 글을 지우거나 했다고해서 데이터베이스에서 삭제되면 안된다.
-	따라서 VO에서 Boolean으로 삭제됐는지 안됐는지를 판단해야한다.
-	*/
-	
+	 * 데이터베이스의 정보는 3년간 유효하다. 회원이 탈퇴하거나, 글을 지우거나 했다고해서 데이터베이스에서 삭제되면 안된다. 따라서
+	 * VO에서 Boolean으로 삭제됐는지 안됐는지를 판단해야한다.
+	 */
+
 	private List<MemberVO> memberList = new ArrayList<MemberVO>();
 	private List<MovieVO> movieList = new ArrayList<MovieVO>();
 	private List<NoticeBoardVO> noticeList = new ArrayList<NoticeBoardVO>();
@@ -29,7 +28,7 @@ public class Database {
 	public Database() {
 		// singleTon Pattern 적용전이기 때문에, 데이터베이스의 객체생성에 제한을 두지않는다.
 	}
-	
+
 	{
 		// ====initialize Member====
 		MemberVO master = new MemberVO();
@@ -47,7 +46,7 @@ public class Database {
 		master.setMem_hp("010-XXXX-XXXX");
 		master.setDelete(false);
 		memberList.add(master);
-		
+
 		MemberVO member_1 = new MemberVO();
 		member_1.setMem_name("신광진");
 		member_1.setMem_id("tlsrhkdwls23");
@@ -112,9 +111,7 @@ public class Database {
 		member_4.setMem_hp("010-1352-3951");
 		memberList.add(member_4);
 	}
-	
-	
-		
+
 	{
 		// ====initialize Movie====
 		MovieVO movie_1 = new MovieVO();
@@ -173,7 +170,7 @@ public class Database {
 		movie_4.setDelete(false);
 		movieList.add(movie_4);
 	}
-	
+
 	{
 		// ====initialize NoticeBoard====
 		NoticeBoardVO notice_1 = new NoticeBoardVO();
@@ -216,7 +213,7 @@ public class Database {
 		notice_4.setMem_id("admin");
 		noticeList.add(notice_4);
 	}
-	
+
 	{
 		// ====initialize Theater====
 		TheaterVO theater_1 = new TheaterVO();
@@ -243,7 +240,7 @@ public class Database {
 		theater_4.setDelete(false);
 		theaterList.add(theater_4);
 	}
-	
+
 	{
 		// ====initialize Sale
 		SaleVO sale_1 = new SaleVO();
@@ -270,7 +267,7 @@ public class Database {
 		sale_6.setSale_id("teenager");
 		sale_6.setSale_price(-4000);
 	}
-	
+
 	{
 		// ====initialize Seat====
 		int seat_no = 1;
@@ -285,8 +282,7 @@ public class Database {
 			}
 		}
 	}
-	
-		
+
 	{
 		// ====initialize Show====
 		ShowVO show_1 = new ShowVO();
@@ -321,7 +317,7 @@ public class Database {
 		show_4.setDelete(false);
 		showList.add(show_4);
 	}
-	
+
 	{
 		// ====initialize Review====
 		ReviewVO review_1 = new ReviewVO();
@@ -369,33 +365,192 @@ public class Database {
 		reviewList.add(review_4);
 	}
 
+	// memberMethod - 새로운 멤버를 회원테이블에 추가하는 메서드
 	public boolean addMember(MemberVO member) {
-		// TODO Auto-generated method stub
-		
-		for(MemberVO e : memberList) {
-			if(member.getMem_id().equals(e.getMem_id()) && member.getMem_pw().equals(e.getMem_pw())) {
-				System.out.println("이미 가입된 회원입니다.");
-				return false;
-			}
-		}
-		
+
+		// View class에서 이름과 주민등록번호를 통해 가입여부를 판단하고 넘어온다.
 		memberList.add(member);
 		return true;
 	}
 
+	// memberMethod - 회원가입하기 위한 아이디가 중복되는지 검사하는 메서드 (중복되는 경우 true를 반환한다)
+	public boolean isDuplicated(MemberVO member) {
+
+		for (MemberVO mem : memberList) {
+			if (member.getMem_id().equals(mem.getMem_id())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	// login Method - 로그인 허용 메서드 (멤버테이블에 추가되어 있는 멤버인 경우 true를 반환하고 멤버테이블에 없는 경우
+	// false를 반환한다)
+	public boolean logIn(MemberVO member) {
+
+		for (MemberVO mem : memberList) {
+			if (member.getMem_id().equals(mem.getMem_id())
+					&& member.getMem_pw().equals(mem.getMem_pw())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// memberMethod - 회원조회 메서드 (관리자용 메서드로, 멤버테이블에 있는 삭제되지 않은 멤버의 리스트를 반환한다)
 	public List<MemberVO> readMember() {
 
 		List<MemberVO> retList = new ArrayList<MemberVO>();
-		
-		for(MemberVO member : memberList) {		
-			//탈퇴하지 않은 회원만 return한다.
-			if(member.isDelete() == false) {
+
+		for (MemberVO member : memberList) {
+			// 탈퇴하지 않은 회원만 return한다.
+			if (member.isDelete() == false) {
 				retList.add(member);
 			}
 		}
-		
 		return retList;
 	}
+
+	// Movie Method - 영화등록 메서드 (새로운 영화를 추가하는 메서드, 영화추가에 성공하면 true, 실패하면 false를
+	// 반환한다.)
+	public boolean addMovie(MovieVO movie) {
+
+		for (MovieVO mv : movieList) {
+			// 기존의 영화리스트에 추가되어 있는 영화인지 검사한다.
+			if (mv.getMovie_id().equals(movie.getMovie_id())) {
+				System.out.println("영화등록에 실패했습니다.");
+				System.out.println("이미 등록되어 있는 영화입니다.");
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	// Movie Method - 영화조회 메서드 (관리자용 메서드로서, 현재 추가되어 있는 영화 리스트를 반환한다)
+	public List<MovieVO> readMovie() {
+
+		List<MovieVO> ret = new ArrayList<MovieVO>();
+
+		for (MovieVO mv : movieList) {
+			// 기존의 영화 리스트에서 삭제되지 않은 리스트만을 새로운 리스트에 저장해서 반환한다.
+			if (mv.isDelete() == false) {
+				ret.add(mv);
+			}
+		}
+
+		// View class에서 ret.isEmpty()를 수행하여 반환결과가 true라면 상영중인 영화가 없다는 메세지를 띄워준다.
+		return ret;
+	}
+
+	// Movie Method - 영화삭제 메서드 (관리자용 메서드로서, 특정 영화를 삭제하는 경우 사용한다. 삭제에 성공하면 true,
+	// 실패하면 false를 리턴한다)
+	public boolean deleteMovie(MovieVO movie) {
+
+		for (MovieVO mv : movieList) {
+			// 삭제하고자 하는 영화가 등록되어 있는 영화인지 검사한다.
+			if (movie.getMovie_id().equals(mv.getMovie_id())) {
+				movieList.remove(movie);
+				System.out.println(movie.getMovie_title() + "을 삭제하였습니다.");
+				return true;
+			}
+		}
+
+		System.out.println("등록되어 있지 않은 영화입니다.");
+		return false;
+	}
+
+	// Review Method - 새로운 한줄평을 등록하는 메서드 (한줄평 등록에 성공하면 true, 실패하면 false를 반환한다)
+	public boolean addReview(ReviewVO review) {
+
+		for (ReviewVO re : reviewList) {
+			// 기존의 reviewList에서 파라미터로 받은 review의 회원id, 영화id, 리뷰번호가 같은 객체가 있는지
+			// 확인한다.
+			// 기존 reviewList에 동일한 정보를 가진 객체가 있는 경우 리뷰등록에 실패한다.
+			if (re.getMem_id().equals(review.getMem_id())
+					&& re.getMovie_id().equals(review.getMovie_id())
+					&& re.getReview_no() == review.getReview_no()) {
+				System.out.println("해당 영화에 대한 리뷰를 이미 작성하셨습니다.");
+				return false;
+			}
+		}
+
+		System.out.println(review.getMovie_id() + " 영화에 대한 한줄평 등록에 성공했습니다.");
+		return true;
+
+	}
+	// Review Method - 기존의 리뷰를 조회하는 메서드 (관리자용 메서드로서, 삭제되지 않은 모든 리뷰를 반환한다)
+	public List<ReviewVO> readReview() {
+
+		List<ReviewVO> ret = new ArrayList<ReviewVO>();
+		//기존의 reivewList에서 삭제되지 않은 review만을 저장해서 리스트로 반환한다.
+		for (ReviewVO re : reviewList) {
+			if (re.isDelete() == false) {
+				ret.add(re);
+			}
+		}
+
+		return ret;
+	}
+
+	//Review Method - 기존의 리뷰를 삭제하는 메서드 
+	public boolean deleteReview(ReviewVO review) {
+
+		for (ReviewVO re : reviewList) {
+			//기존의 reviewList에서 파라미터로 받은 review의 mem_id, movie_id, reivew_no가 같은
+			//객체가 있는지 확인하고, 존재한다면 해당 리뷰를 reviewList에서 삭제한다.
+			if (re.getMem_id().equals(review.getMem_id())
+					&& re.getMovie_id().equals(review.getMovie_id())
+					&& re.getReview_no() == review.getReview_no()) {
+				
+				reviewList.remove(review);
+				System.out.println("리뷰삭제를 성공하였습니다.");
+				return true;
+			}
+		}
+		
+		System.out.println("등록되어 있지 않은 리뷰입니다.");
+		return false;
+	}
+	
+	//Review Method - 파라미터로 받은 영화의 movie_id와 일치하는 movie_id를 가진 객체만을 리스트로 반환한다.
+	public List<ReviewVO> readMovieReview(MovieVO movie){
+		
+		List<ReviewVO> ret = new ArrayList<ReviewVO>();
+		
+		for(ReviewVO re : reviewList) {
+			//reviewVO의 외래키 movie_id를 이용하여, 기존의 reviewList에서
+			//파라미터로 받은 movie_id와 일치하는 review객체만을 리스트에 추가한다.
+			if(re.getMovie_id().equals(movie.getMovie_id())) {
+				ret.add(re);
+			}
+		}
+		
+		return ret;
+		
+	}
+	
+	public boolean addTheater(TheaterVO theater) {
+		
+		for(TheaterVO th : theaterList) {
+			if(th.getTheater_id().equals(theater.getTheater_id())) {
+				System.out.println("이미 추가되어 있는 상영관입니다.");
+				return false;
+			}
+		}
+		
+		System.out.println("상영관 추가에 성공하였습니다.");
+		return true;
+	}
+	
+	
+	
+	
+
+	
+	
+	
 	
 	
 	
@@ -415,24 +570,3 @@ public class Database {
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
