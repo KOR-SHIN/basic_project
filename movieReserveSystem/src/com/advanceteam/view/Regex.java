@@ -73,7 +73,6 @@ public class Regex {
 	
 	/**
 	 * \\d{6} : 숫자로만 구성된 6자리 문자열
-	 * [1-4]{1}\\d{6} : 첫자리는 1~4중 하나이고, 나머지 6자리는 숫자로만 구성된 문자열
 	 * View class에서 회원가입을 선택한 경우, 회원의 가입여부를 판단하기 위해 주민등록번호를 확인한다.
 	 * @param mem_regno1
 	 * @param mem_regno2
@@ -84,19 +83,28 @@ public class Regex {
 		// regex_regno1은 숫자로만 구성된 6자리 문자열 패턴일 경우 true를 반환한다.
 		String regex_regno1 = "\\d{6}";
 		
-		// regex_regno2는 첫 글자는 1~4중에 1개
-		// 첫 글자를 제외한 나머지는 숫자로 구성된 6자리 문자열 패턴일 경우 true를 반환한다.
-		String regex_regno2 = "[1-4]{1}\\d{6}";
-		
 		if(Pattern.matches(regex_regno1, mem_regno1)) {
-			if(Pattern.matches(regex_regno2, mem_regno2)) {
 				return true;
-			}
 		}
 		
 		return false;
 	}
 	
+	
+	/**
+	 * [1-4]{1}\\d{6} : 첫자리는 1~4중 하나이고, 나머지 6자리는 숫자로만 구성된 문자열
+	 * View class에서 회원가입을 선택한 경우, 회원의 가입여부를 판단하기 위해 주민등록번호를 확인한다.
+	 * @param mem_regno2
+	 * @return
+	 */
+	public boolean checkRegno2(String mem_regno2) {
+		String regex_regno2 = "[1-4]{1}\\d{6}";
+		
+		if(Pattern.matches(regex_regno2, mem_regno2)) {
+			return true;
+		}
+		return false;
+	}
 	
 	
 	
