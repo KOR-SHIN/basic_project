@@ -1,7 +1,11 @@
 package com.advanceteam.vo;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ */
 public class ShowVO {
 
 	private String show_id; // ShowVO PK

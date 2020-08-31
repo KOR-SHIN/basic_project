@@ -6,7 +6,6 @@ import java.util.Date;
  * 
  * @author shink
  * @since 2020-08-30
- * @see
  */
 public class NoticeBoardVO {
 

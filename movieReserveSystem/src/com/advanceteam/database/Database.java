@@ -117,7 +117,6 @@ public class Database {
 		MovieVO movie_1 = new MovieVO();
 		movie_1.setMovie_actor("황정민, 이정재");
 		movie_1.setMovie_ageGrade(19);
-		movie_1.setMovie_close(null);
 		movie_1.setMovie_director("봉준호");
 		movie_1.setMovie_genre("액션");
 		movie_1.setMovie_id("A0001");
@@ -131,7 +130,6 @@ public class Database {
 		MovieVO movie_2 = new MovieVO();
 		movie_2.setMovie_actor("이선균, 조여정");
 		movie_2.setMovie_ageGrade(19);
-		movie_2.setMovie_close(null);
 		movie_2.setMovie_director("봉준호");
 		movie_2.setMovie_genre("스릴러");
 		movie_2.setMovie_id("A0002");
@@ -145,7 +143,6 @@ public class Database {
 		MovieVO movie_3 = new MovieVO();
 		movie_3.setMovie_actor("드웨인 존슨");
 		movie_3.setMovie_ageGrade(15);
-		movie_3.setMovie_close(null);
 		movie_3.setMovie_director("크리스토퍼 놀란");
 		movie_3.setMovie_genre("액션");
 		movie_3.setMovie_id("A0003");
@@ -159,7 +156,6 @@ public class Database {
 		MovieVO movie_4 = new MovieVO();
 		movie_4.setMovie_actor("최민식, 하정우");
 		movie_4.setMovie_ageGrade(15);
-		movie_4.setMovie_close(null);
 		movie_4.setMovie_director("유상민");
 		movie_4.setMovie_genre("범죄");
 		movie_4.setMovie_id("A0004");

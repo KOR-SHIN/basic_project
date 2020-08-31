@@ -77,7 +77,7 @@ public class Regex {
 	 * @param mem_regno1
 	 * @return
 	 */
-	public boolean checkRegno(String mem_regno1, String mem_regno2) {
+	public boolean checkRegno1(String mem_regno1) {
 		
 		// regex_regno1은 숫자로만 구성된 6자리 문자열 패턴일 경우 true를 반환한다.
 		String regex_regno1 = "\\d{6}";
