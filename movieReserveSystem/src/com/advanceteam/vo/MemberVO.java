@@ -2,6 +2,11 @@ package com.advanceteam.vo;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ */
 public class MemberVO {
 
 	private String mem_id; // MemberVO PK
@@ -16,6 +21,8 @@ public class MemberVO {
 	private Date mem_signUpDate;
 	private String mem_auth;
 	private int budget;
+	
+
 	private boolean isDelete;
 	
 

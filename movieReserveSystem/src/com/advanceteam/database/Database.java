@@ -270,17 +270,54 @@ public class Database {
 
 	{
 		// ====initialize Seat====
-		int seat_no = 1;
-		for (int row = 0; row > 10; row++) {
-			for (int col = 0; col > 10; col++) {
+		
+		//영화관의 행은 A~J까지 존재하며, 열을 10번까지 존재한다.
+		for (int row = 1; row < 11; row++) {
+			for (int col = 1; col < 11; col++) {
 				SeatVO seat = new SeatVO();
-				seat.setSeat_row(row);
+
+				switch (row) {
+				case 1:
+					seat.setSeat_row("A");
+					break;
+				case 2:
+					seat.setSeat_row("B");
+					break;
+				case 3:
+					seat.setSeat_row("C");
+					break;
+				case 4:
+					seat.setSeat_row("D");
+					break;
+				case 5:
+					seat.setSeat_row("E");
+					break;
+				case 6:
+					seat.setSeat_row("F");
+					break;
+				case 7:
+					seat.setSeat_row("G");
+					break;
+				case 8:
+					seat.setSeat_row("H");
+					break;
+				case 9:
+					seat.setSeat_row("I");
+					break;
+				case 10:
+					seat.setSeat_row("J");
+					break;
+				}
+
 				seat.setSeat_col(col);
-				seat.setSeat_no(seat_no++);
 				seat.setTheater_id("4DX");
+				seat.setSeat_use(false);
+				seat.setSeat_no(seat.getTheater_id() + seat.getSeat_row() + seat.getSeat_col());
+				//seat_no는 "4DXA11"의 형식으로 저장된다.
 				seatList.add(seat);
 			}
 		}
+
 	}
 
 	{
@@ -418,8 +455,8 @@ public class Database {
 		for (MovieVO mv : movieList) {
 			// 기존의 영화리스트에 추가되어 있는 영화인지 검사한다.
 			if (mv.getMovie_id().equals(movie.getMovie_id())) {
-//				System.out.println("영화등록에 실패했습니다.");
-//				System.out.println("이미 등록되어 있는 영화입니다.");
+				// System.out.println("영화등록에 실패했습니다.");
+				// System.out.println("이미 등록되어 있는 영화입니다.");
 				return false;
 			}
 		}
@@ -451,12 +488,12 @@ public class Database {
 			// 삭제하고자 하는 영화가 등록되어 있는 영화인지 검사한다.
 			if (movie.getMovie_id().equals(mv.getMovie_id())) {
 				movieList.remove(movie);
-//				System.out.println(movie.getMovie_title() + "을 삭제하였습니다.");
+				// System.out.println(movie.getMovie_title() + "을 삭제하였습니다.");
 				return true;
 			}
 		}
 
-//		System.out.println("등록되어 있지 않은 영화입니다.");
+		// System.out.println("등록되어 있지 않은 영화입니다.");
 		return false;
 	}
 
@@ -469,12 +506,12 @@ public class Database {
 			// 기존 reviewList에 동일한 정보를 가진 객체가 있는 경우 리뷰등록에 실패한다.
 			if (re.getMem_id().equals(review.getMem_id()) && re.getMovie_id().equals(review.getMovie_id())
 					&& re.getReview_no() == review.getReview_no()) {
-//				System.out.println("해당 영화에 대한 리뷰를 이미 작성하셨습니다.");
+				// System.out.println("해당 영화에 대한 리뷰를 이미 작성하셨습니다.");
 				return false;
 			}
 		}
 
-//		System.out.println(review.getMovie_id() + " 영화에 대한 한줄평 등록에 성공했습니다.");
+		// System.out.println(review.getMovie_id() + " 영화에 대한 한줄평 등록에 성공했습니다.");
 		return true;
 
 	}
@@ -503,12 +540,12 @@ public class Database {
 					&& re.getReview_no() == review.getReview_no()) {
 
 				reviewList.remove(review);
-//				System.out.println("리뷰삭제를 성공하였습니다.");
+				// System.out.println("리뷰삭제를 성공하였습니다.");
 				return true;
 			}
 		}
 
-//		System.out.println("등록되어 있지 않은 리뷰입니다.");
+		// System.out.println("등록되어 있지 않은 리뷰입니다.");
 		return false;
 	}
 
@@ -535,12 +572,12 @@ public class Database {
 		for (TheaterVO th : theaterList) {
 			// 파라미터로 받은 상영관정보가 기존의 theaterList에 존재한다면 추가하지 않는다.
 			if (th.getTheater_id().equals(theater.getTheater_id())) {
-//				System.out.println("이미 추가되어 있는 상영관입니다.");
+				// System.out.println("이미 추가되어 있는 상영관입니다.");
 				return false;
 			}
 		}
 
-//		System.out.println("상영관 추가에 성공하였습니다.");
+		// System.out.println("상영관 추가에 성공하였습니다.");
 		return true;
 	}
 
@@ -565,7 +602,7 @@ public class Database {
 			// 기존의 theaterList에서 파라미터로 받은 theater와 같은 정보를 가지는
 			// 객체를 조회하여, 존재하면 해당 객체를 theaterList에서 삭제한다.
 			if (th.getTheater_id().equals(theater.getTheater_id())) {
-//				System.out.println("상영관 삭제를 성공하였습니다.");
+				// System.out.println("상영관 삭제를 성공하였습니다.");
 				theaterList.remove(theater);
 				return true;
 			}
@@ -574,121 +611,97 @@ public class Database {
 		return false;
 
 	}
-	
+
 	// Show Method - 상영 영화 추가 메서드
 	public boolean addShow(ShowVO show) {
-		
-		for(ShowVO sh : showList) {
-			if(show.getShow_id().equals(sh.getShow_id())) {
-//					&& show.getMovie_id().equals(sh.getMovie_id())
-//					&& show.getShow_date().equals(sh.getShow_date())
-//					&& show.getTheater_id().equals(sh.getTheater_id())) {
-//				System.out.println("이미 상영등록이 되어있습니다.");
+
+		for (ShowVO sh : showList) {
+			if (show.getShow_id().equals(sh.getShow_id())) {
+				// && show.getMovie_id().equals(sh.getMovie_id())
+				// && show.getShow_date().equals(sh.getShow_date())
+				// && show.getTheater_id().equals(sh.getTheater_id())) {
+				// System.out.println("이미 상영등록이 되어있습니다.");
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 	// Show Method - 상영 영화 리스트 조회 메서드
 	public List<ShowVO> readShow() {
-		
+
 		List<ShowVO> ret = new ArrayList<ShowVO>();
-		
-		for(ShowVO show : showList) {
-			//기존의 showList에서 삭제되지 않은 객체들을 리스트로 반환한다.
-			if(show.isDelete() == false) {
+
+		for (ShowVO show : showList) {
+			// 기존의 showList에서 삭제되지 않은 객체들을 리스트로 반환한다.
+			if (show.isDelete() == false) {
 				ret.add(show);
 			}
 		}
-		
+
 		return ret;
 	}
-	
+
 	// Reserve Method - 예약을 조회하는 메서드 (관리자용 메서드, 모든 예약정보를 리스트로 반환함)
 	public List<ReserveVO> readReserve() {
 		List<ReserveVO> ret = new ArrayList<ReserveVO>();
-		
-		for(ReserveVO res : reserveList) {
-			if(res.isDelete() == false) {
+
+		for (ReserveVO res : reserveList) {
+			if (res.isDelete() == false) {
 				ret.add(res);
 			}
 		}
-		
+
 		return ret;
 	}
-	
+
 	// Reserve Method - 예약을 조회하는 메서드(reserveList에서 회원 id를 조회하여 예약이 되어있는지 확인해준다.)
 	public boolean readReserve(MemberVO member) {
-		
-		for(ReserveVO res : reserveList) {
-			if(res.getMem_id().equals(member.getMem_id())) {
+
+		for (ReserveVO res : reserveList) {
+			if (res.getMem_id().equals(member.getMem_id())) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	// noticeBoard Method - 새로운 게시글을 추가하는 메서드 (게시글은 중복되어 상관없으므로 무조건 추가된다)
 	public boolean addPost(NoticeBoardVO notice) {
 		noticeList.add(notice);
 		return true;
 	}
-	
+
 	// noticeBoard Method - 기존의 noticeList에 존재하는 게시글 중에 파라미터로 받은 게시글과
 	// notice_no가 같은 게시글을 삭제한다.
 	public boolean deletePost(NoticeBoardVO notice) {
-		
-		for(NoticeBoardVO nb : noticeList) {
-			if(nb.getBoard_no() == notice.getBoard_no()) {
+
+		for (NoticeBoardVO nb : noticeList) {
+			if (nb.getBoard_no() == notice.getBoard_no()) {
 				noticeList.remove(notice.getBoard_no());
 				return true;
 			}
 		}
 		return false;
-		
+
 	}
-	
+
 	// noticeBoard Method - 게시판의 모든 게시글을 조회하는 메서드
 	public List<NoticeBoardVO> readPost() {
-		
+
 		List<NoticeBoardVO> ret = new ArrayList<NoticeBoardVO>();
-		
-		for(NoticeBoardVO notice : noticeList) {
-			if(notice.isDelete() == false) {
+
+		for (NoticeBoardVO notice : noticeList) {
+			if (notice.isDelete() == false) {
 				ret.add(notice);
 			}
 		}
-		
+
 		return ret;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	//Seat Method - 예매가능한 좌석을 출력해주는 메서드 (예약테이블을 조회)
+
 
 }

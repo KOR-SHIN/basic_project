@@ -1,5 +1,9 @@
 package com.advanceteam.vo;
-
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ */
 public class TheaterVO {
 
 	private String theater_id; // TheaterVO PK

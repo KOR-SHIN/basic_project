@@ -6,13 +6,14 @@ package com.advanceteam.vo;
  * @since 2020-08-30
  * @see
  * 	2020-09-01 예약정보 조회시 영화제목을 출력해주기 위해 movie_title을 추가하였음.
+ * 	2020-09-01 SeatVO에서 가져온 외래키 seat_no를 int형 변수에서 String으로 변경함.
  */
 public class ReserveVO {
 
 	private int res_no; // ReserveVO PK
 	private String mem_id; // MemberVO FK
 	private String show_id; // ShowVO FK
-	private int seat_no; // SeatVO FK
+	private String seat_no; // SeatVO FK
 	private String theater_id; // TheaterVO FK
 	private String sale_id; // SaleVO FK
 	private String movie_title; // MovieVO FK
@@ -59,11 +60,11 @@ public class ReserveVO {
 		this.show_id = show_id;
 	}
 
-	public int getSeat_no() {
+	public String getSeat_no() {
 		return seat_no;
 	}
 
-	public void setSeat_no(int seat_no) {
+	public void setSeat_no(String seat_no) {
 		this.seat_no = seat_no;
 	}
 
