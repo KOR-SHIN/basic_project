@@ -531,9 +531,11 @@ public class Database {
 		
 	}
 	
+	//Theater Method - 상영관정보를 추가하는 메서드
 	public boolean addTheater(TheaterVO theater) {
 		
 		for(TheaterVO th : theaterList) {
+			//파라미터로 받은 상영관정보가 기존의 theaterList에 존재한다면 추가하지 않는다.
 			if(th.getTheater_id().equals(theater.getTheater_id())) {
 				System.out.println("이미 추가되어 있는 상영관입니다.");
 				return false;
