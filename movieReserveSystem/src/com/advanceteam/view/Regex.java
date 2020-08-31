@@ -75,7 +75,6 @@ public class Regex {
 	 * \\d{6} : 숫자로만 구성된 6자리 문자열
 	 * View class에서 회원가입을 선택한 경우, 회원의 가입여부를 판단하기 위해 주민등록번호를 확인한다.
 	 * @param mem_regno1
-	 * @param mem_regno2
 	 * @return
 	 */
 	public boolean checkRegno(String mem_regno1, String mem_regno2) {

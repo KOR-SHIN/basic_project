@@ -1,5 +1,12 @@
 package com.advanceteam.vo;
 
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ * @see
+ * 	2020-09-01 예약정보 조회시 영화제목을 출력해주기 위해 movie_title을 추가하였음.
+ */
 public class ReserveVO {
 
 	private int res_no; // ReserveVO PK
@@ -8,11 +15,20 @@ public class ReserveVO {
 	private int seat_no; // SeatVO FK
 	private String theater_id; // TheaterVO FK
 	private String sale_id; // SaleVO FK
+	private String movie_title; // MovieVO FK
 	private int res_price;
 	private boolean isDelete;
 	
 	public boolean isDelete() {
 		return isDelete;
+	}
+
+	public String getMovie_title() {
+		return movie_title;
+	}
+
+	public void setMovie_title(String movie_title) {
+		this.movie_title = movie_title;
 	}
 
 	public void setDelete(boolean isDelete) {

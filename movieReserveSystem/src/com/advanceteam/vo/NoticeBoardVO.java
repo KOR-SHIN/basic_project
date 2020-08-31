@@ -2,9 +2,16 @@ package com.advanceteam.vo;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ * @see
+ */
 public class NoticeBoardVO {
 
-	private int board_no; // NoticeBoard PK
+	private int board_no; 
+	private String board_id; // NoticeBoard PK
 	private String mem_id; // MemverVO FK
 	private String board_title;
 	private String board_text;
@@ -14,6 +21,14 @@ public class NoticeBoardVO {
 	
 	public boolean isDelete() {
 		return isDelete;
+	}
+
+	public String getBoard_id() {
+		return board_id;
+	}
+
+	public void setBoard_id(String board_id) {
+		this.board_id = board_id;
 	}
 
 	public void setDelete(boolean isDelete) {

@@ -7,9 +7,9 @@ public class MemberVO {
 	private String mem_id; // MemberVO PK
 	private String mem_pw;
 	private String mem_name;
-	private String mem_hp;
-	private String mem_regno1;
-	private String mem_regno2;
+	private String mem_hp; 
+	private String mem_regno1; 
+	private String mem_regno2; 
 	private String mem_add;
 	private String mem_add2;
 	private String mem_rank;
