@@ -398,7 +398,7 @@ public class Database {
 		reviewList.add(review_4);
 	}
 
-	// memberMethod - 새로운 멤버를 회원테이블에 추가하는 메서드
+	// member Method - 새로운 멤버를 회원테이블에 추가하는 메서드
 	public boolean addMember(MemberVO member) {
 
 		// View class에서 이름과 주민등록번호를 통해 가입여부를 판단하고 넘어온다.
@@ -406,7 +406,20 @@ public class Database {
 		return true;
 	}
 
-	// memberMethod - 회원가입하기 위한 아이디가 중복되는지 검사하는 메서드 (중복되는 경우 true를 반환한다)
+	// member Method - 회원삭제 메서드
+	public boolean deleteMember(MemberVO member) {
+		
+		for(MemberVO mem : memberList) {
+			if(mem.getMem_id().equals(member.getMem_id())) {
+				memberList.remove(member);
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	// member Method - 회원가입하기 위한 아이디가 중복되는지 검사하는 메서드 (중복되는 경우 true를 반환한다)
 	public boolean isDuplicated(MemberVO member) {
 
 		for (MemberVO mem : memberList) {

@@ -17,8 +17,8 @@ public class View {
 	Regex rg = new Regex();
 	Scanner sc = new Scanner(System.in);
 	MemberVO member = new MemberVO();
-	List<MemberVO> memList = sv.readMember();
-	List<MovieVO> mvList = db.readMovie(); //service로 변경해야함
+	
+	
 	
 	public void run() {
 		while(true){
@@ -153,6 +153,7 @@ public class View {
 	 * @author 김선준
 	 */
 	private void ticketing(MemberVO mb) {
+		List<MovieVO> mvList = db.readMovie(); //service로 바꿔야함
 		while(true){
 			System.out.println("=== 상영중인 영화 ===");
 			movieList();
@@ -197,6 +198,7 @@ public class View {
 	 * @author 김선준
 	 */
 	private void MovieListPage() {
+		List<MovieVO> mvList = db.readMovie(); // service로 바꿔야함
 		while(true){
 			System.out.println("=== 상영중인 영화정보 ===");
 			movieList();
@@ -272,7 +274,7 @@ public class View {
 			System.out.print("번호 입력 : ");
 			switch(sc.nextInt()){
 			case 1:
-				if(memList.remove(mb)){
+				if(db.deleteMember(mb)){ //service로 바꿔야함
 					run(); // 스택에서 순차적으로 다 빼야하는데 아직 방법을 모름
 				}
 				break;
@@ -288,7 +290,7 @@ public class View {
 	 * @author 김선준
 	 */
 	private void movieList() {
-		List<MovieVO> mvList = db.readMovie();
+		List<MovieVO> mvList = db.readMovie(); //service로 바꿔야함
 	    for (int i = 0; i< mvList.size(); i++) {
 	    	System.out.println((i+1) + ". " + mvList.get(i).getMovie_title());
 	    }
@@ -299,6 +301,17 @@ public class View {
 	 * @author 김선준
 	 */
 	private void memlogIn() {
+		System.out.println("1. 관리자");
+		System.out.println("2. 회원");
+	
+		int tmp = sc.nextInt();
+		
+		if(tmp == 1) {
+			//test를 위해 임시로 넣어놓은 부분입니다.
+			AddView temp = new AddView();
+			temp.adminList();
+		}
+		
 		while(true){
 			String mem_id = logInId();
 			String mem_pw = logInPw();
@@ -349,6 +362,7 @@ public class View {
 	 * @author 김선준
 	 */
 	private boolean checkLogin(String mem_id, String mem_pw){
+		List<MemberVO> memList = sv.readMember();
 		boolean memCheck = false;
 		for(int i = 0; i<memList.size(); i++){ 
 			//아이디와 패스워드가 일치하면
@@ -369,6 +383,7 @@ public class View {
 	 * @author 김선준
 	 */
 	private MemberVO getMemberVO(String mem_id) {
+		List<MemberVO> memList = sv.readMember();
 		int num = 0;
 		for(int i = 0; i<memList.size(); i++){ 
 			//아이디가 일치하는 객체
@@ -473,6 +488,7 @@ public class View {
 	 * @author 김선준
 	 */
 	private boolean memOverlapCheck(String mem_name, String mem_regno1, String mem_regno2){
+		List<MemberVO> memList = sv.readMember();
 		boolean sameMem = false; //중복체크용
 		//중복체크
 		for(int i = 0; i<memList.size(); i++){ //리스트에 담긴 이름의 갯수만큼 반복 
@@ -494,6 +510,7 @@ public class View {
 	 * @author 김선준
 	 */
 	private boolean idOverlapCheck(String mem_id){
+		List<MemberVO> memList = sv.readMember();
 		boolean sameId = false; //중복체크용
 		//중복체크
 		for(int i = 0; i<memList.size(); i++){ //리스트에 담긴 이름의 갯수만큼 반복 
@@ -536,6 +553,7 @@ public class View {
 		while(true){
 			System.out.print("패스워드를 입력해주세요 : ");
 			String mem_pw = sc.next(); //입력받아서
+			sc.nextLine();
 			if(rg.checkPw(mem_pw)){ //양식이 맞으면
 				return mem_pw; //반환
 			}
@@ -550,7 +568,7 @@ public class View {
 	private String inputHp() {
 		while(true){
 			System.out.print("전화번호를 입력해주세요 : ");
-			String mem_hp = sc.next(); //입력받아서
+			String mem_hp = sc.nextLine(); //입력받아서
 			if(rg.checkHp(mem_hp)){ //양식이 맞으면
 				return mem_hp; //반환
 			}
@@ -564,7 +582,7 @@ public class View {
 	 */
 	private String inputAdd() {
 		System.out.print("주소를 입력해주세요 : ");
-		String mem_add = sc.next(); //입력받아서
+		String mem_add = sc.nextLine(); //입력받아서
 		return mem_add; //반환
 	}
 	
@@ -574,7 +592,7 @@ public class View {
 	 */
 	private String inputAdd2() {
 		System.out.print("상세주소를 입력해주세요 : ");
-		String mem_add2 = sc.next(); //입력받아서
+		String mem_add2 = sc.nextLine(); //입력받아서
 		return mem_add2; //반환
 	}
 
