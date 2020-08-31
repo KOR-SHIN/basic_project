@@ -20,7 +20,7 @@ public class Database {
 
 	Calendar cal = Calendar.getInstance();
 
-	Database() {
+	public Database() {
 		// singleTon Pattern 적용전이기 때문에, 데이터베이스의 객체생성에 제한을 두지않는다.
 
 		// ====initialize Member====
@@ -326,5 +326,19 @@ public class Database {
 
 		
 
+	}
+
+	public boolean addMember(MemberVO member) {
+		// TODO Auto-generated method stub
+		
+		for(MemberVO e : memberList) {
+			if(member.getMem_id().equals(e.getMem_id()) && member.getMem_pw().equals(e.getMem_pw())) {
+				System.out.println("이미 가입된 회원입니다.");
+				return false;
+			}
+		}
+		
+		memberList.add(member);
+		return true;
 	}
 }
