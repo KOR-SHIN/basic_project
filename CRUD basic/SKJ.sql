@@ -17,5 +17,5 @@ CREATE TABLE THEATER_MEMBER (
     
 INSERT INTO THEATER_MEMBER (MEM_ID, MEM_PASS, MEM_NAME, MEM_REGNO1, MEM_REGNO2, MEM_ADD1, MEM_ADD2, MEM_HP,
                             MEM_MAIL)
-                    VALUES ('shinkwang23', 'temppass', '½Å±¤Áø', '950130', '1111111', '´ëÀü±¤¿ª½Ã È«µµµ¿', 'È«µµ·Î 55¹ø±æ 41 ÁýÇöÀü 209È£',
-                            '010-5361-4713', 'shinkwang23@navercom');
+                    VALUES ('tempId', 'tempPw', 'ì´ë§ë…„', '980102', '1111111', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬', 'í•œë¹›ë¹Œë”© 4ì¸µ ì´ë§ë…„ ìŠ¤íŠœë””ì˜¤',
+                            '010-1231-1231', 'tempEmail@gmail.com');
