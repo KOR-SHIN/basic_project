@@ -1,13 +1,26 @@
 package com.advanceteam.vo;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ */
 public class ShowVO {
 
 	private String show_id; // ShowVO PK
 	private String movie_id; // MovieVO FK
 	private String theater_id; // TheaterVO FK
 	private Date show_date;
+	private boolean isDelete;
+	
+	public boolean isDelete() {
+		return isDelete;
+	}
+
+	public void setDelete(boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public String getShow_id() {
 		return show_id;

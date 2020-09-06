@@ -1,19 +1,32 @@
 package com.advanceteam.vo;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ */
 public class MovieVO {
 
 	private String movie_id; // MovieVO PK
 	private String movie_director;
 	private String movie_actor;
 	private Date movie_open;
-	private Date movie_close;
 	private String movie_title;
 	private int movie_ageGrade;
 	private String movie_genre;
 	private int movie_runTime; //분 단위로 입력 (if 1시간 30분 -> 150)
 	private int movie_price;
+	private boolean isDelete;
+	
+
+	public boolean isDelete() {
+		return isDelete;
+	}
+
+	public void setDelete(boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public String getMovie_id() {
 		return movie_id;
@@ -45,14 +58,6 @@ public class MovieVO {
 
 	public void setMovie_open(Date movie_open) {
 		this.movie_open = movie_open;
-	}
-
-	public Date getMovie_close() {
-		return movie_close;
-	}
-
-	public void setMovie_close(Date movie_close) {
-		this.movie_close = movie_close;
 	}
 
 	public String getMovie_title() {

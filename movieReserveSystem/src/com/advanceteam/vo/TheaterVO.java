@@ -1,9 +1,22 @@
 package com.advanceteam.vo;
-
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ */
 public class TheaterVO {
 
 	private String theater_id; // TheaterVO PK
 	private int theater_price;
+	private boolean isDelete;
+
+	public boolean isDelete() {
+		return isDelete;
+	}
+
+	public void setDelete(boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public int getTheater_price() {
 		return theater_price;

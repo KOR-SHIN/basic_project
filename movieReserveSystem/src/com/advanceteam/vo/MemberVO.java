@@ -2,23 +2,39 @@ package com.advanceteam.vo;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ */
 public class MemberVO {
 
 	private String mem_id; // MemberVO PK
 	private String mem_pw;
 	private String mem_name;
-	private String mem_hp;
-	private String mem_regno1;
-	private String mem_regno2;
+	private String mem_hp; 
+	private String mem_regno1; 
+	private String mem_regno2; 
 	private String mem_add;
 	private String mem_add2;
 	private String mem_rank;
 	private Date mem_signUpDate;
-	private Date mem_deleteDate;
 	private String mem_auth;
 	private int budget;
+	
 
-	public String isMem_auth() {
+	private boolean isDelete;
+	
+
+	public boolean isDelete() {
+		return isDelete;
+	}
+
+	public void setDelete(boolean isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public String getMem_auth() {
 		return mem_auth;
 	}
 
@@ -114,12 +130,5 @@ public class MemberVO {
 		this.mem_signUpDate = mem_signUpDate;
 	}
 
-	public Date getMem_deleteDate() {
-		return mem_deleteDate;
-	}
-
-	public void setMem_deleteDate(Date mem_deleteDate) {
-		this.mem_deleteDate = mem_deleteDate;
-	}
 
 }

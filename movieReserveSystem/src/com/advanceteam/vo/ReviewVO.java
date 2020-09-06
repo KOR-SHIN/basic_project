@@ -1,5 +1,9 @@
 package com.advanceteam.vo;
-
+/**
+ * 
+ * @author shink
+ * @since 2020-08-30
+ */
 public class ReviewVO {
 
 	private int review_no; // PK
@@ -9,6 +13,16 @@ public class ReviewVO {
 	private String review_text;
 	private int review_like;
 	private int review_hate;
+	private boolean isDelete;
+	
+
+	public boolean isDelete() {
+		return isDelete;
+	}
+
+	public void setDelete(boolean isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public int getReview_grade() {
 		return review_grade;
